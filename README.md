@@ -1,2 +1,2 @@
-# D3-angular-sample
-Samples to display the D3.js in AngularJS.
+# D3-sample
+Samples to display the D3.js.
