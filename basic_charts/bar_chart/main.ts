@@ -1,7 +1,7 @@
 class settingChart implements chartMargin {
 
   constructor(margin: chartMargin) {
-    console.log( margin );
+    //console.log( margin );
   }
 }
 
