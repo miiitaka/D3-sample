@@ -1,6 +1,6 @@
 var settingChart = (function () {
     function settingChart(margin) {
-        console.log(margin);
+        //console.log( margin );
     }
     return settingChart;
 })();
