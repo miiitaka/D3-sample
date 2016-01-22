@@ -16,8 +16,8 @@ var BasicBarChart = (function () {
         this.height = this.chartData.height - this.chartData.margin.top - this.chartData.margin.bottom;
         this.chartData.x = this.d3.scale.ordinal().rangeRoundBands([0, this.width], .1);
         this.chartData.y = this.d3.scale.linear().range([this.height, 0]);
-        this.chartData.xAxis = this.d3.svg.axis().scale(this.chartData.x).orient(this.chartData.orient.bottom);
-        this.chartData.yAxis = this.d3.svg.axis().scale(this.chartData.y).orient(this.chartData.orient.left).ticks(10, "%");
+        this.chartData.xAxis = this.d3.svg.axis().scale(this.chartData.x).orient("bottom");
+        this.chartData.yAxis = this.d3.svg.axis().scale(this.chartData.y).orient("left").ticks(10, "%");
         this.chartData.svg = this.d3.select("#" + this.chartData.id).append("svg")
             .attr("width", this.chartData.width)
             .attr("height", this.chartData.height)
@@ -68,7 +68,6 @@ var chartData = {
     margin: { top: 20, right: 20, bottom: 30, left: 40 },
     width: 960,
     height: 500,
-    orient: { bottom: "bottom", left: "left" },
     id: "chart",
     file: "data.json",
     x: "",

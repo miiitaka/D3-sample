@@ -1,0 +1,47 @@
+[
+  {
+    "year": 2005,
+    "money": 550,
+    "number": 35
+  },
+  {
+    "year": 2006,
+    "money": 600,
+    "number": 40
+  },
+  {
+    "year": 2007,
+    "money": 700,
+    "number": 45
+  },
+  {
+    "year": 2008,
+    "money": 800,
+    "number": 60
+  },
+  {
+    "year": 2009,
+    "money": 900,
+    "number": 70
+  },
+  {
+    "year": 2010,
+    "money": 850,
+    "number": 65
+  },
+  {
+    "year": 2011,
+    "money": 880,
+    "number": 67
+  },
+  {
+    "year": 2012,
+    "money": 900,
+    "number": 70
+  },
+  {
+    "year": 2013,
+    "money": 1000,
+    "number": 75
+  }
+]
