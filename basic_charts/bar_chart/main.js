@@ -23,20 +23,18 @@ var BasicBarChart = (function () {
             .attr("height", this.chartData.height)
             .append("g")
             .attr("transform", "translate(" + this.chartData.margin.left + "," + this.chartData.margin.top + ")");
-        this.viewChart(this.chartData, this.height);
     };
     /*
      * View Chart
      *
      * @version 1.0.0
      * @author  Kazuya Takami
-     * @param   chartData ChartData
-     * @param   height    number
      *
      */
-    BasicBarChart.prototype.viewChart = function (chartData, height) {
-        var chartData = chartData, height = height;
-        this.d3.tsv(chartData.file, this.type, function (error, data) {
+    BasicBarChart.prototype.viewChart = function () {
+        var chartData = this.chartData, height = this.height;
+        // CSV・TSV形式を使用する場合は、json -> csv,tsv メソッドに置き換える
+        this.d3.json(chartData.file, function (error, data) {
             if (error)
                 throw error;
             chartData.x.domain(data.map(function (d) { return d.letter; }));
@@ -64,10 +62,6 @@ var BasicBarChart = (function () {
                 .attr("height", function (d) { return height - chartData.y(d.frequency); });
         });
     };
-    BasicBarChart.prototype.type = function (d) {
-        d.frequency = +d.frequency;
-        return d;
-    };
     return BasicBarChart;
 })();
 var chartData = {
@@ -76,7 +70,7 @@ var chartData = {
     height: 500,
     orient: { bottom: "bottom", left: "left" },
     id: "chart",
-    file: "data.tsv",
+    file: "data.json",
     x: "",
     y: "",
     xAxis: "",
@@ -84,4 +78,5 @@ var chartData = {
     svg: ""
 };
 var chart = new BasicBarChart(d3, chartData);
+chart.viewChart();
 //# sourceMappingURL=main.js.map
