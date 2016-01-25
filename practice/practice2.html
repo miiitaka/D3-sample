@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Basic Graph</title>
+  <style>
+    .bar rect {
+      fill: #990000;
+    }
+    .bar text {
+      fill: #ffffff;
+      text-anchor: middle;
+    }
+  </style>
+</head>
+<body>
+<svg class="bar" xmlns="http://www.w3.org/2000/svg"></svg>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script>
+  var margin = { top : 30, right : 30, bottom : 30, left : 30 };
+  width = 700 - margin.left - margin.right;
+  height = 540 - margin.top - margin.bottom;
+
+  var y = d3.scale.linear().range([height,0]);
+  var x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
+
+  var barChart = d3.select(".bar")
+    .attr("width", 700)
+    .attr("height", 540)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")" );
+
+  d3.csv("data.csv", function(d) {
+    d.Age = +d.Age;
+    return d;
+  },
+  function(error, data) {
+    // domain()設定で、range()設定との対比率を計算してくれる。
+    y.domain([0, d3.max(data, function(d){ return d.Age; })]);
+    x.domain(data.map(function(d){ return d.Name }));
+
+    var barWidth = width / data.length;
+    var bar = barChart.selectAll("g").data(data).enter().append("g").attr("transform", function(d){ return "translate(" + x(d.Name) + ",0)"; });
+
+    bar.append("rect")
+      .attr("y", function(d){ return y(d.Age); })
+      .attr("height", function(d){ return height - y(d.Age); })
+      .attr("width", x.rangeBand());
+
+    bar.append("text")
+      .attr("x", barWidth / 2)
+      .attr("y", function(d){ return y(d.Age) + 15; })
+      .text(function(d){ return d.Age; });
+  });
+</script>
+</body>
+</html>
