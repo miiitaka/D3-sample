@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Basic Graph</title>
+  <style>
+    .bar rect {
+      fill: #990000;
+    }
+    .bar text {
+      fill: #ffffff;
+      text-anchor: middle;
+    }
+  </style>
+</head>
+<body>
+<svg class="bar" xmlns="http://www.w3.org/2000/svg"></svg>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script>
+  var width = 150, height = 120;
+
+  var graph = d3.scale.linear().range([height,0]);
+  var barChart = d3.select(".bar").attr("width", width).attr("height", height);
+
+  d3.tsv("data.tsv", function(d) {
+    d.Age = +d.Age;
+    return d;
+  },
+  function(error, data) {
+    // domain()設定で、range()設定との対比率を計算してくれる。
+    graph.domain([0, d3.max(data, function(d){ return d.Age; })]);
+
+    var barWidth = width / data.length;
+    var bar = barChart.selectAll("g").data(data).enter().append("g").attr("transform", function(d, i){ return "translate(" + i * barWidth + ",0)"; });
+
+    bar.append("rect")
+      .attr("y", function(d){ return graph(d.Age); })
+      .attr("height", function(d){ return height - graph(d.Age); })
+      .attr("width", barWidth - 1);
+
+    bar.append("text")
+      .attr("x", barWidth / 2)
+      .attr("y", function(d){ return graph(d.Age) + 15; })
+      .text(function(d){ return d.Age; });
+  });
+</script>
+</body>
+</html>
