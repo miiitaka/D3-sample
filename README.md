@@ -3,6 +3,7 @@ Samples to display the D3.js.
 
 * https://d3js.org
 * https://github.com/mbostock/d3
+* https://www.w3.org/TR/SVG/
 
 
 ## Method
@@ -100,4 +101,31 @@ TSVファイルを読み込みます。
 
 ```
 d3.scale.linear()
+```
+
+
+## CSS
+
+### fill
+描画の塗色を指定
+```
+rect {
+  fill: #ff0000;
+}
+```
+
+### stroke
+描画の枠線の色を指定
+```
+rect {
+  stroke: #ff00ff;
+}
+```
+
+### stroke-width
+描画の枠線の太さ（幅）を指定
+```
+rect {
+  stroke-width: 5px;
+}
 ```
