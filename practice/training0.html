@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Basic Graph</title>
+  <style>
+    .bar rect {
+      fill: #990000; /* グラフ用の描画色 */
+    }
+    .bar text {
+      fill : #ffffff; /* グラフの文字用の描画色 */
+      text-anchor: end; /* textタグの x や y 座標の設定を文字の右端に指定 */
+    }
+  </style>
+</head>
+<body>
+<h1>Rectangle</h1>
+<svg class="bar" width="300" height="200">
+  <!-- g要素はグルーピング -->
+  <g transform="translate(0,0)">
+    <rect width="50" height="25"></rect>
+    <text x="45" y="17.5">10</text>
+  </g>
+  <g transform="translate(0,26)">
+    <rect width="25" height="25"></rect>
+    <text x="20" y="17.5" >5</text>
+  </g>
+</svg>
+
+<h1>Circle</h1>
+<svg width="300" height="200">
+  <g>
+    <circle cx="60" cy="60" r="50"></circle>
+  </g>
+</svg>
+
+<h1>Ellipse</h1>
+<svg width="300" height="200">
+  <g>
+    <ellipse cx="60" cy="60" rx="50" ry="25"></ellipse>
+  </g>
+</svg>
+
+<h1>Line</h1>
+<svg width="300" height="200">
+  <g>
+    <line x1="20" y1="100" x2="100" y2="20" stroke="black" stroke-width="2"></line>
+  </g>
+</svg>
+
+<h1>Polygon</h1>
+<svg width="300" height="200">
+  <g>
+    <polygon points="60,20 100,40 100,80 60,100 20,80 20,40"></polygon>
+  </g>
+</svg>
+
+<h1>Polyline</h1>
+<svg width="300" height="200">
+  <g>
+    <polyline fill="none" stroke="black" points="20,100 40,60 70,80 100,20"></polyline>
+  </g>
+</svg>
+
+</body>
+</html>
