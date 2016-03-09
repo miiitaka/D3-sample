@@ -2,10 +2,12 @@
 Samples to display the D3.js.
 
 ## Reference URL
-
 * https://d3js.org
 * https://github.com/mbostock/d3
 * https://www.w3.org/TR/SVG/
+* https://developer.mozilla.org/ja/docs/Web/SVG
+
+## SVGに関する基礎知識
 * https://developer.mozilla.org/ja/docs/Web/SVG
 
 ## Method
@@ -44,6 +46,10 @@ d3.scale.linear()
 ### max()
 
 配列の最大値を返します。
+
+### transition()
+
+アニメーションを追加します。
 
 #### 1次元配列の場合
 ```
