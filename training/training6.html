@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Basic Graph</title>
+  <style>
+    #graph rect {
+      fill: #ff0000; /* グラフ用の描画色 */
+    }
+  </style>
+</head>
+<body>
+<svg id="graph"></svg>
+<button id="update">更新</button>
+
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+  "use strict";
+
+  var
+    dataList1 = [300,100,50,230,25],
+    dataList2 = [100,120,80,200,90];
+
+  d3.select("#graph")
+    .selectAll("rect")
+    .data(dataList1)
+    .enter()
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", function(d,i){ return i * 25; })
+    .attr("height", 20)
+    .attr("width", 0)
+    .transition()
+    .delay(function(d,i){ return i * 500 })
+    .duration(2500)
+    .attr("width", function(d,i){ return d; });
+
+  d3.select("#update").on("click", function(){
+    d3.select("#graph")
+      .selectAll("rect")
+      .data(dataList2)
+      .transition()
+      .attr("width", function(d,i){ return d; });
+  });
+
+</script>
+</body>
+</html>

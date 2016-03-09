@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG Basic Graph</title>
+  <style>
+    #graph rect {
+      fill: #ff0000; /* グラフ用の描画色 */
+    }
+  </style>
+</head>
+<body>
+<svg id="graph"></svg>
+
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+  "use strict";
+
+  d3.select("#graph")
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 10)
+    .attr("width", 200)
+    .attr("height", 20);
+
+</script>
+</body>
+</html>
