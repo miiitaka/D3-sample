@@ -9,10 +9,19 @@
   <script>
     $(function(){
       $("#pieChart").D3PieChart({
-        "data": [50, 30, 20]
+        "data": [50, 30, 20],
+        "innerRadisu": 40
       });
     });
   </script>
+  <style>
+    .total {
+      text-anchor: middle;
+    }
+    .pie-text {
+      text-anchor: middle;
+    }
+  </style>
 </head>
 <body>
   <div id="pieChart"></div>

@@ -29,16 +29,34 @@
         .attr("transform", "translate(" + settings.width / 2 + "," + settings.height / 2 + ")");
 
       // Basic Setting
-      pieElement = svg.selectAll("path")
+      pieElement = svg.selectAll("g")
         .data(pie(settings.data))
         .enter()
-        .append("path")
+        .append("g");
+
+      // Path Setting
+      pieElement.append("path")
         .style("fill", function(d, i) {
           return colorSet(i);
+        })
+        .attr("d", arc);
+
+      // Text Setting
+      pieElement.append("text")
+        .attr("class", "pie-text")
+        .attr("transform", function(d){
+          return "translate(" + arc.centroid(d) + ")"
+        })
+        .text(function(d){
+          return d.value;
         });
 
-      // arc Setting
-      pieElement.attr("d", arc);
+      // Total View
+      d3.select("svg")
+        .append("text")
+        .attr("transform", "translate(" + settings.width / 2 + "," + settings.height / 2 + ")")
+        .attr("class", "total")
+        .text(d3.sum(settings.data));
     });
   };
 }(jQuery));
