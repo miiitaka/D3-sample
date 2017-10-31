@@ -2,28 +2,13 @@
   "use strict";
 
   $.fn.D3PieChart = function(options) {
-    var easing = [
-      d3.easeElastic,
-      d3.easeBounce,
-      d3.easeLinear,
-      d3.easeSin,
-      d3.easeQuad,
-      d3.easeCubic,
-      d3.easePoly,
-      d3.easeCircle,
-      d3.easeExp,
-      d3.easeBack
-    ];
     var defaults = {
       "data": [],
       "color": d3.schemeCategory10,
       "height": 250,
       "width": 250,
       "innerRadisu": 0,
-      "outerRadisu": 100,
-      "duration": 500,
-      "delay": 500,
-      "ease": 2
+      "outerRadisu": 100
     };
     var settings = $.extend({}, defaults, options);
 
@@ -54,21 +39,7 @@
         .style("fill", function(d, i) {
           return colorSet(i);
         })
-        .transition()
-        .duration(settings.duration)
-        .delay(function(d, i){
-          return settings.delay * i;
-        })
-        .ease(easing[settings.ease])
-        .attrTween("d", function (d) {
-          var interpolate = d3.interpolate(
-            {startAngle: d.startAngle, endAngle: d.startAngle},
-            {startAngle: d.startAngle, endAngle: d.endAngle}
-          );
-          return function (t) {
-            return arc(interpolate(t));
-          }
-        });
+        .attr("d", arc);
 
       // Text Setting
       pieElement.append("text")
