@@ -13,7 +13,7 @@
 <svg id="graph"></svg>
 <button id="update">更新</button>
 
-<script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="//d3js.org/d3.v5.min.js" charset="utf-8"></script>
 <script>
   "use strict";
 
@@ -31,19 +31,19 @@
     .attr("height", 20)
     .attr("width", 0)
     .transition()
-    .delay(function(d,i){ return i * 500 })
+    .delay(function(d,i){ return i * 500; })
     .duration(2500)
     .attr("width", function(d,i){ return d; });
 
 
   // 目盛りの設定
-  var xScale = d3.scale.linear()
+  var xScale = d3.scaleLinear()
     .domain([0,300])
     .range([0,300]);
 
   d3.select("#graph")
     .append("g")
-    .call(d3.svg.axis().scale(xScale).orient("bottom"));
+    .call(d3.axisBottom(xScale));
 
   d3.select("#update").on("click", function(){
     d3.select("#graph")
